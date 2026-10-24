@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Matthieu Clauet — Peintures</title>
+  <meta name="description" content="Galerie des peintures de Matthieu Clauet.">
+  <meta name="author" content="Matthieu Clauet">
+  <meta name="copyright" content="© Matthieu Clauet — Tous droits réservés">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Applique le thème et la langue avant l'affichage pour éviter un flash.
+    try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+    try {
+      const l = localStorage.getItem("lang") || (navigator.language || "fr").slice(0, 2);
+      document.documentElement.lang = l === "en" ? "en" : "fr";
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <h1 class="artist">Matthieu Clauet</h1>
+      <p class="subtitle" data-i18n="subtitle">Peintures</p>
+    </div>
+    <div class="controls">
+      <div class="lang-switch" role="group" aria-label="Langue / Language">
+        <button type="button" data-lang="fr" lang="fr" aria-label="Français">FR</button>
+        <button type="button" data-lang="en" lang="en" aria-label="English">EN</button>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <span class="theme-label" id="themeLabel"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <ul class="gallery" id="gallery"></ul>
+  </main>
+
+  <footer class="site-footer">
+    <p class="copyright">© <span id="year"></span> Matthieu Clauet — <span data-i18n="rights">Tous droits réservés.</span></p>
+    <p class="legal" data-i18n="legal">Les œuvres et photographies présentées sur ce site sont protégées par le droit d'auteur.
+      Toute reproduction, diffusion ou utilisation, totale ou partielle, sans l'autorisation écrite de l'artiste est interdite.</p>
+  </footer>
+
+  <!-- Visionneuse plein écran -->
+  <div class="viewer" id="viewer" role="dialog" aria-modal="true" hidden>
+    <div class="viewer-top">
+      <span class="counter" id="counter"></span>
+      <button class="icon-btn" id="closeBtn" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="stage" id="stage">
+      <button class="nav-btn prev" id="prevBtn" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <figure class="frame">
+        <div class="img-wrap">
+          <img id="viewerImg" alt="" draggable="false">
+          <span class="watermark" aria-hidden="true">© Matthieu Clauet</span>
+        </div>
+      </figure>
+      <button class="nav-btn next" id="nextBtn" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div class="caption" id="caption">
+      <p class="cap-title" id="capTitle"></p>
+      <p class="cap-meta" id="capMeta"></p>
+      <p class="cap-copy">© Matthieu Clauet</p>
+    </div>
+  </div>
+
+  <script src="oeuvres.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
